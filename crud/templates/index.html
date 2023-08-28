@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css"></link>
+  <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <header>
+      <nav class="navbar navbar-expand--lg navbar-dark bg-dark">
+        <div class="col-sm">
+            <a class="navbar-brand flex-grow-1" style="text-align: center; color: white; margin-left: 25px;">
+                Management Employee 
+            </a>
+        </div>
+        <div class="d-flex" style="margin-right:25px;">
+            <div class="input-group input-group-sm">
+              <input class="form-control" type="search" id="search" placeholder="Live search......" aria-label="Search">
+              </input>
+              <a class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt">Search</i></a>
+            </div>
+        </div>
+      </nav>
+    </header>
+    <div style=" border-radius:10px " class="container my-5 bg-info ">
+        <div  class="row">
+              <div style=" border-style: solid-radius" class="col-sm-3 col-md-3 col-lg-3 mx-auto">
+                <form method="POST" class="post-form" action="">
+                  {% csrf_token %}
+                  <div   class="">
+                      <label for="">Name</label>
+                      <div>
+                          {{form.name}}
+                      </div>
+                  </div>
+                                                          
+                  <div  class="">
+                      <label for="">Email address</label>
+                      <div>
+                          {{form.email}}
+                      </div>
+                  </div>
+
+                  
+                  <div  class="">
+                    <label for="">Occupation</label>
+                    <div>
+                        {{form.occupation}}
+                    </div>
+                  </div>
+
+                  <div  class="">
+                    <label for="">Salary</label>
+                    <div>
+                        {{form.salary}}
+                    </div>
+                  </div>
+
+                  <div  class="">
+                    <label for="">Gender</label>
+                    <div>
+                        {{form.gender}}
+                    </div>
+                  </div><br>
+              
+                  <div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+              </form>
+              
+
+              </div>
+              <div class="col-sm-9 col-md-9 col-lg-9">
+                <table class="table  table-bordererd table-sm" style="text-align: center;">
+                  <thead class="table-white">
+                    <tr>
+                      <th style="text-align:center;" scope="col">Id</th>
+                      <th style="text-align:center;" scope="col">Name</th>
+                      <th style="text-align:center;" scope="col">Email</th> 
+                      <th style="text-align:center;" scope="col">Occupation</th>
+                      <th style="text-align:center;" scope="col">Salary</th>
+                      <th style="text-align:center;" scope="col">Gender</th>
+                      <th style="text-align:center;" scope="col">Actions</th>           
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for client in clients %}
+                    <tr>
+                      <td>{{client.id}}</td>
+                      <td>{{client.name}}</td>
+                      <td>{{client.email}}</td>
+                      <td>{{client.occupation}}</td>
+                      <td>{{client.salary}}</td>
+                      <td>{{client.gender}}</td>
+                      <td>
+                        <a href="/update/{{client.id}}"><span class="btn btn-success">Update</span></a>                        
+                        <a href="/suprimer/{{client.id}}" class="btn btn-danger">Delete</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+            </div>
+              
+      </div>     
+</body>
+
+</html>
